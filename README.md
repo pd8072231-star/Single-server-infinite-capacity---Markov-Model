@@ -23,9 +23,48 @@ This is a queuing model in which the arrival is Marcovian and departure distribu
 
  
 ## Program
-![image](https://github.com/ramjan1729/Single-server-infinite-capacity---Markov-Model/assets/103921593/5f1fd58d-5929-4c51-89ea-4cef009e5bad)
-
+arr_time=float(input("Enter the mean inter arrival time of objects from Feeder (in secs): "))
+ser_time=float(input("Enter the mean  inter service time of Lathe Machine (in secs) :  "))
+Robot_time=float(input("Enter the Additional time taken for the Robot (in secs) :  "))
+lam=1/arr_time
+mu=1/(ser_time+Robot_time)
+print("--------------------------------------------------------------")
+print("Single Server with Infinite Capacity - (M/M/1):(oo/FIFO)")
+print("--------------------------------------------------------------")
+print(f"The mean arrival rate per second : {lam:.2f}")
+print(f"The mean service rate per second : {mu:.2f}")
+if (lam <  mu):
+    Ls=lam/(mu-lam)
+    Lq=Ls-lam/mu
+    Ws=Ls/lam
+    Wq=Lq/lam
+    print(f"Average number of objects in the system : {Ls:.2f}")
+    print(f"Average number of objects in the conveyor :  {Lq:.2f}")
+    print(f"Average waiting time of an object in the system : {Ws:.2f} secs")
+    print(f"Average waiting time of an object in the conveyor : {Wq:.2f} secs")
+    print(f"Probability that the system is busy : {(lam/mu):.2f}" )
+    print(f"Probability that the system is empty : {(1-lam/mu):.2f}" )
+else:
+    print("Warning! Objects Over flow will happen in the conveyor")
+print("---------------------------------------------------------------")
 ## Output :
+Enter the mean inter arrival time of objects from Feeder (in secs): 8
+Enter the mean  inter service time of Lathe Machine (in secs) :  1
+Enter the Additional time taken for the Robot (in secs) :  4
+--------------------------------------------------------------
+Single Server with Infinite Capacity - (M/M/1):(oo/FIFO)
+--------------------------------------------------------------
+The mean arrival rate per second : 0.12
+The mean service rate per second : 0.20
+Average number of objects in the system : 1.67
+Average number of objects in the conveyor :  1.04
+Average waiting time of an object in the system : 13.33 secs
+Average waiting time of an object in the conveyor : 8.33 secs
+Probability that the system is busy : 0.62
+Probability that the system is empty : 0.38
+---------------------------------------------------------------
+
 
 ## Result :
+The average number of material in the system and in the conveyor and waiting time are successfully found.
 
